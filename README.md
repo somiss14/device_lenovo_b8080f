@@ -27,3 +27,17 @@ with
 Build: `source build/envsetup.sh && lunch lineage_b8080f-userdebug && make bacon`.
 
 The Chromium 119 WebView used on this board is the standard LineageOS prebuilt (`LineageOS/android_external_chromium-webview_prebuilt_arm`, needs `git lfs` to materialize `webview.apk`, sha256 `feeedd44677f5643e2de2de4a44061f7bd31a662e78909d6e052b4fe1468870a`).
+
+
+## Recording fps status (2026-11-26)
+
+- dt.img raises the Venus load-freq table (1080p30 row -> 160 MHz, 720p30 row
+  -> 133 MHz); stock zero-margin table preserved as dt.img.orig_venus.
+  Proof of the bottleneck: venus0_vcodec0_clk/rate read exactly 66.7 MHz
+  during 720p30 encode with stock rows (22 fps recorded content); 133 MHz
+  after the patch.
+- Companion fix in frameworks/av (branch b8080f-14.1): ACodec clamps the AVC
+  level from size/fps/bitrate instead of inheriting the KK venc default
+  Level 3.2.
+- Together these took 1080p recording from 16 fps to 21-25 fps; the final fps
+  on the combined images is being measured.
