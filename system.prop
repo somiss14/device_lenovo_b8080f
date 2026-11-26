@@ -1,0 +1,37 @@
+# Display: 1920x1200 panel at the stock 240 dpi
+ro.sf.lcd_density=240
+ro.opengles.version=196608
+debug.composition.type=c2d
+persist.hwc.mdpcomp.enable=true
+ro.hwui.texture_cache_size=48
+ro.hwui.layer_cache_size=32
+ro.hwui.path_cache_size=16
+ro.hwui.gradient_cache_size=1
+ro.hwui.drop_shadow_cache_size=4
+ro.hwui.r_buffer_cache_size=4
+ro.hwui.text_small_cache_width=1024
+ro.hwui.text_small_cache_height=512
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=1024
+# The panel has no hardware Home/Back keys: show the on-screen navigation bar
+qemu.hw.mainkeys=0
+# UK restaurant tablet
+persist.sys.timezone=Europe/London
+# Adreno 305 + Chromium WebView 119: GPU raster corrupts small text/tiles, so WebViews draw in software
+ro.webview.software_layer=true
+# Wi-Fi
+wifi.interface=wlan0
+# USB / adb during bring-up
+persist.sys.usb.config=mtp,adb
+ro.adb.secure=0
+ro.secure=0
+# Bluetooth
+ro.bluetooth.hfp.ver=1.6
+ro.qualcomm.bt.hci_transport=smd
+qcom.bluetooth.soc=smd
+# bring-up: allow adb root (userdebug)
+persist.sys.root_access=3
+
+# landscape-native panel: let keyguard follow the rotation sensor
+# (SystemUI StatusBarWindowManager.shouldEnableKeyguardScreenRotation)
+lockscreen.rot_override=true
